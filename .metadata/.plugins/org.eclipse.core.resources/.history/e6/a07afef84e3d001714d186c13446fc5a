@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class mainManager {
+
+	public static void main(String[] args) {
+
+		Scanner s = new Scanner(System.in);
+
+		// TODO Auto-generated method stub
+
+		// GUI 완성되면 넣을것
+		// new forGUI();
+
+		System.out.println("식당 주문 관리");
+
+		tableManager table = new tableManager();
+		table.tableInit();
+		table.showState();
+		while (true) {
+			System.out.println("-------------------------------------------");
+			System.out.println("뭐할래?");
+			System.out.println("| 1.주문하기 | 2.테이블 상태 | 4.등록조회 |");
+			System.out.print("=>");
+			String a = s.next();
+			s.next();
+			
+			switch (a) {
+				case "1":
+					System.out.println("주문하기");
+					table.tableOrder();
+					break;
+				case "2":
+					System.out.println("테이블 상태입니다.");
+					table.showState();
+					break;
+				case "3":
+					System.out.println("1000 이라는 정수입니다.");
+					break;
+				default:
+					System.out.println("해당 숫자가 없습니다");
+					break;
+			}
+		}
+
+		/*
+		 * //-------------------주문내역----------------------------
+		 * System.out.println("주문내역"); System.out.println("안심스테이크	21000");
+		 * System.out.println("까르보나라	12000");
+		 * System.out.println("스테이크셀러드	10000");
+		 * 
+		 * System.out.println("총 합계 : 0000000");
+		 * //------------------메뉴---------------------------------
+		 * System.out.println("메뉴"); for(int i = 1 ; i <= 20 ; i++){
+		 * System.out.println(i+"번 메뉴"); } //----------------------등록
+		 * 조회--------------------------- System.out.println("메뉴 목록");
+		 * System.out.println("고객"); System.out.println("매출");
+		 * System.out.println("직원"); System.out.println("메뉴");
+		 */
+	}
+}

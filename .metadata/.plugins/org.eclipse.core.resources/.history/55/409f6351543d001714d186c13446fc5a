@@ -1,0 +1,98 @@
+import java.util.Scanner;
+
+public class tableManager {
+//테이블 현황과 주문목록을 보여준다.
+	
+	
+	customerTable table_cus [][] = new customerTable [4][5];
+	//테이블은 총 20자리로 제한
+	
+	void tableInit(){		//테이블 맨 처음에 번호 매겨줌
+		
+		int table_count = 1;
+		for(int i = 0; i < 4; i++ ){
+			for(int j=0 ; j<5 ; j++){
+				customerTable empty_cus = new customerTable("empty", table_count);
+				table_cus[i][j] = empty_cus;
+				table_count++;
+			}
+		}
+	}
+	void showState (){		//상태 보여주기	
+		System.out.println("테이블 현황");
+			for(int i= 0; i < 4; i++ ){
+				for(int j = 0 ; j<5 ; j++){
+					System.out.print(table_cus[i][j].table_num+" : "+table_cus[i][j].name+"\t"); 
+				}
+				System.out.println();
+			}
+	}	
+	void tableOrder(){		//주문을 만들고 메뉴를 넣어줌.
+		
+		Scanner s = new Scanner(System.in);
+	
+		//주문자 정보 받는다.
+		System.out.println("주문자 이름 :");
+		String name = s.nextLine();
+		System.out.println("넣을 테이블 번호:");
+		String ord_num = s.nextLine();
+	
+		customerTable new_cus = new customerTable(name, Integer.valueOf(ord_num));
+		
+		//메뉴 반복 받기
+		int selector = 0;
+		while(selector != 99){
+			System.out.println("메뉴 고르시오");
+			System.out.println("1:양파 | 2:당근 | 3:고구마 | 4:멸치 | 98:방금 주문 지우기 |99:빠져나가기");
+			selector = s.nextInt();
+			if(selector == 1) {
+				System.out.println("양파 선택");
+				new_cus.addOrder("양파");
+			}else if(selector == 2){
+				System.out.println("당근 선택");
+				new_cus.addOrder("당근");
+			}else if(selector == 3){	
+				System.out.println("고구마 선택");
+				new_cus.addOrder("고구마");
+			}else if(selector == 4){
+				System.out.println("멸치");
+				new_cus.addOrder("멸치");
+			}
+			System.out.println("입력되었습니다.");
+		}
+		
+		//테이블 정보에 손님 입력하고, 인덱스에도 적용
+		
+
+		System.out.println(ord_num+"번 테이블에"+name+"님 입력완료");
+		new_cus.showOrderAll();
+		stateChanger(new_cus.table_num , new_cus);
+		showState();
+		
+	}
+	void stateChanger(int tablenum, customerTable newcus){		//테이블 상태용 테이블 스테이트를 변경하고 실제 테이블 목록에 커스터머를 집어넣는다.
+		System.out.println("개발중");
+	}
+	void tablePay(){		//테이블 계산
+		System.out.println("계산할 테이블 번호를 입력하시오.");
+		Scanner s = new Scanner(System.in);
+		int t_num = s.nextInt();
+		int s_num = 1;
+		
+		for (int i = 0 ; i<4 ;i++){
+			for (int j = 0 ; j<5;j++){
+				if (s_num == t_num){
+					System.out.println("계산 할 자리 정보");
+					System.out.println(s_num +" "+ i +" "+ j);
+					table_cus[i][j].showOrderAll();
+					break;
+				}else {
+					s_num ++ ;
+					System.out.println(s_num +" "+ i +" "+ j);
+				}
+			}
+		}
+	}
+	
+}
+

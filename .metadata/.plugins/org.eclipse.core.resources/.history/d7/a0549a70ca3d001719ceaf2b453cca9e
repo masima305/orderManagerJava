@@ -1,0 +1,10 @@
+package threadEx;
+
+public class playGround {
+	public static void main(String[] args) {
+		TimerThread th = new TimerThread();
+		th.start();
+		TimerThread th2 = new TimerThread();
+		th2.run(2);
+	}
+}

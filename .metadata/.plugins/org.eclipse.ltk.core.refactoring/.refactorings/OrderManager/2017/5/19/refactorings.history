@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;tableState&apos; to &apos;tableManager&apos;&#x0D;&#x0A;- Original project: &apos;OrderManager&apos;&#x0D;&#x0A;- Original element: &apos;tableState&apos;&#x0D;&#x0A;- Renamed element: &apos;tableManager&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;tableState&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{tableState.java[tableState" matchStrategy="1" name="tableManager" qualified="false" references="true" similarDeclarations="false" stamp="1494320235004" textual="false" version="1.0"/>
+</session>

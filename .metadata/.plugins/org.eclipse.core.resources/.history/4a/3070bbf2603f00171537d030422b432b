@@ -1,0 +1,94 @@
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+
+public class forGUI extends JFrame{
+	forGUI(){
+		setTitle("Table POS");//타이틀을 지정한다.
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//x버튼 누르면 종료
+		
+		Container contentPane = getContentPane(); //프레임의 컨텐트팬을 알아내어 컨텐트팬에 직접 컴포넌트 부착
+		JPanel mani_bord = new JPanel(); // 조종 보드
+		JPanel table_bord = new JPanel();// 테이블 판
+		JPanel order_bord = new JPanel(); // 주문 판
+		JPanel menu_bord = new JPanel(); //음식 리스트 판
+		JPanel regis_bord = new JPanel(); //사용자 리스트판
+			
+		contentPane.setBackground(Color.LIGHT_GRAY); //흑회색 배경
+	
+		JLabel title = new JLabel("식당 주문관리",SwingConstants.CENTER);
+		JLabel table_title = new JLabel("테이블 현황",SwingConstants.CENTER);
+		JLabel order_title = new JLabel("주문내역",SwingConstants.CENTER);
+		JLabel menu_title = new JLabel("메뉴",SwingConstants.CENTER);
+		JLabel regis_title= new JLabel("등록/조회",SwingConstants.CENTER);
+		
+		Border border = BorderFactory.createLineBorder(Color.BLUE,2);
+		
+		title.setBorder(border);
+		mani_bord.setBorder(border);
+		table_bord.setBorder(border);
+		order_bord.setBorder(border);
+		menu_bord.setBorder(border);
+		regis_bord.setBorder(border);
+		
+		contentPane.setLayout(new BorderLayout(10,10)); //FlowLayout배치 관리자 달기
+		mani_bord.setLayout(new GridLayout(2,2,10,10));
+		table_bord.setLayout(new GridLayout());
+		order_bord.setLayout(new GridLayout());
+		menu_bord.setLayout(new GridLayout()); 
+		regis_bord.setLayout(new GridLayout());
+		
+		title.setFont(new Font("Ariel", Font.PLAIN, 35));
+		
+		contentPane.add(title, BorderLayout.NORTH); //ok버튼 달기
+		contentPane.add(mani_bord, BorderLayout.CENTER); //ok버튼 달기
+		
+		mani_bord.add(table_bord);
+		mani_bord.add(order_bord);
+		mani_bord.add(menu_bord );
+		mani_bord.add(regis_bord );
+		
+		table_bord.add(table_title);
+		order_bord.add(order_title);
+		menu_bord.add(menu_title);
+		regis_bord.add(regis_title);
+	//-----------------------세부 사항-----------------------
+	//table status
+		
+		JPanel table_status = new JPanel();
+		table_status.setLayout(new GridLayout(5,4,5,5));
+		table_status.add(new JButton("1"));
+		table_status.add(new JButton("2"));
+		table_status.add(new JButton("3"));
+		table_status.add(new JButton("4"));
+		table_status.add(new JButton("5"));
+		table_status.add(new JButton("6"));
+		table_status.add(new JButton("7"));
+		table_status.add(new JButton("8"));
+		table_status.add(new JButton("9"));
+		table_status.add(new JButton("10"));
+		table_status.add(new JButton("11"));
+		
+		table_bord.add(table_status);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		setSize(800,900);//사이즈를 정한다.
+		setVisible(true);//보이게 한다.
+	
+		
+	}
+}

@@ -1,0 +1,92 @@
+package datatest1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class start{
+	private static Connection dbTest;	
+	private String username="system";
+	private String password="yt9953yt";
+	
+	
+	
+	start(){
+		connectDB();
+	}
+
+	private void connectDB() {
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			dbTest = DriverManager.getConnection("jdbc:oracle:thin:"
+												+"@localhost:1521:XE"
+												,username
+												,password);
+			System.out.println("데이터 베이스에 연결되었습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("시스템 연결 실패!");
+			System.out.println("SQLException:" + e);
+		} catch (Exception e) {
+			System.out.println("Exception" + e);
+		}
+	}
+	
+	public void execute_query1() throws SQLException{
+		System.out.println("문제1 : ");
+		
+		String sqlStr = "SELECT maker, model, price FROM PC natural join product where cd like '%8%' and ram >= 24";
+		PreparedStatement stmt = dbTest.prepareStatement(sqlStr);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			System.out.println(rs.getString("maker")+"\t"+rs.getString("model")+"\t"+rs.getString("price"));
+		}
+		rs.close();
+		stmt.close();
+	}
+	public void execute_query2() throws SQLException{
+		System.out.println("문제2.SCREEN 이 11초과이고 제조업체가 ‘D’ 나 ‘G’인 LAPTOP의 총 합계를 구하시오");
+		String sqlStr = "SELECT sum(price) FROM product natural join laptop WHERE screen>11 and maker like '%D%' or maker like '%G%'";
+		PreparedStatement stmt = dbTest.prepareStatement(sqlStr);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			System.out.println("price:" + rs.getString("sum(PRICE)"));
+		}
+		rs.close();
+		stmt.close();
+	}
+	
+	public void execute_query3() throws SQLException{
+		System.out.println("문제3.PC의 hd가 2.4 초과인 것과 laptop의 speed가 130 초과인 모델의 총 개수를 구하시오");
+	
+		String sqlStr = "SELECT count(model) from pc,product where hd>2.4";
+		PreparedStatement stmt = dbTest.prepareStatement(sqlStr);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			System.out.print("count(model): " + rs.getString("count(model)"));
+		}
+		rs.close();
+		stmt.close();
+	}
+	
+	public static void main(String[] argv) {
+		start one = new start();
+		
+		try {
+			one.execute_query1();
+			System.out.println("-------------------------------------");
+			one.execute_query2();
+			System.out.println("-------------------------------------");
+			one.execute_query3();
+			dbTest.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("SQLException:" + e);
+		}
+	}
+}
